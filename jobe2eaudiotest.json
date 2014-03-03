@@ -1,0 +1,49 @@
+{
+	"job_name": "e2eaudiotest",
+	"target": "panda03",
+	"timeout" : 1800,
+	"actions" : [
+		{
+		"command": "deploy_linaro_image", 
+			"parameters": {
+				"hwpack": "http://snapshots.linaro.org/oneiric/lt-panda-oneiric/20120125/0/images/hwpack/hwpack_linaro-lt-panda_20120125-0_armel_supported.tar.gz", 
+				"rootfs": "http://snapshots.linaro.org/oneiric/linaro-o-ubuntu-desktop/20120125/1/images/tar/linaro-o-ubuntu-desktop-tar-20120125-1.tar.gz"
+			}, 
+			"metadata": {
+				"hwpack.build": "0", 
+				"hwpack.date": "20120125", 
+				"hwpack.type": "lt-panda-oneiric", 
+				"rootfs.date": "20120125", 
+				"rootfs.type": "linaro-o-ubuntu-desktop", 
+			"rootfs.build": "1"
+			}
+		}, 
+		{
+		"command": "lava_test_install", 
+		"parameters": 
+			{
+				"tests": ["e2eaudiotest-json"],
+                                "register" : ["\"http://git.linaro.org/gitweb?p=people/kurt-r-taylor/e2eaudiotest.git;a=blob_plain;f=e2eaudiotest.json;hb=HEAD\""]
+			}
+		}, 
+		{
+		"command": "boot_linaro_image"
+		}, 
+		{
+		"command": "lava_test_run", 
+		"parameters": 
+			{
+				"test_name": "e2eaudiotest-json",
+				"timeout" : 600
+			}
+		},
+		{
+			"command": "submit_results",
+			"parameters":
+				{
+					"server": "http://validation.linaro.org/lava-server/RPC2/",
+					"stream": "/anonymous/USERNAME/"
+				}
+		}
+	]
+}

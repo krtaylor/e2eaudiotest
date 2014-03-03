@@ -1,0 +1,18 @@
+{
+	"format": "LAVA-Test Test Definition Format",
+	"test_id": "e2eaudiotest-json",
+	"install": {
+                "steps": ["git clone git://git.linaro.org/people/kurt-r-taylor/e2eaudiotest.git"],
+		"deps": ["git-core", "libasound2-dev", "libfftw3-dev", "gcc",
+		"alsa-utils" ]
+	},
+	"run": {
+		"steps": ["cd e2eaudiotest; gcc testfreq.c utils_alsa.c -lasound -lfftw3 -o testfreq ; ./e2eaudiotest.sh"]
+	},
+	"parse" : {
+		"pattern": "^(?P<test_case_id>\\w+):\\W+(?P<result>\\w+)\\W+(?P<measurement>\\d+)\\W+sinewave",
+		"appendall": {
+			"units": "Hz"
+		}
+	}
+}

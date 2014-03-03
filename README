@@ -1,0 +1,30 @@
+
+kurt.taylor@linaro.org
+
+What is it:
+===========
+This program is a simple test for testing the audio device on a linux host.
+The application, testfreq, will test the audio device by playing a sine wave
+at A440 and then sampling the input for that frequency - input is coupled to
+output with a cable.
+
+
+To build:
+=========
+
+first install libasound2-dev and libfftw3-dev
+
+then run make
+
+make clean will tidy up
+
+
+To run the test:
+================
+
+use a cable to connect the input jack to the output jack (line out to mic in)
+
+adjust mixer settings for your device
+
+run with:  ./e2eaudiotest.sh
+
