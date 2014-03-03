@@ -1,8 +1,8 @@
 // testfreq.c
 //
+// Copyright 2014 Kurt Taylor
 // Copyright 2011 Linaro Limited
 //
-// kurt.taylor@linaro.org
 //
 
 #include <stdio.h>
